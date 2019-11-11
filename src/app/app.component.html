@@ -1,0 +1,90 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<form>
+  <div class="container">
+    <input
+      autocomplete="off"
+      type="text"
+      name="txtcat"
+      [(ngModel)]="txtcat"
+      placeholder="Theif Name"
+    /><br />
+    <input
+      autocomplete="off"
+      type="number"
+      name="txtcat"
+      [(ngModel)]="cases"
+      placeholder="How many cases"
+    />
+    <br />
+    <input
+      autocomplete="off"
+      type="text"
+      name="area"
+      [(ngModel)]="area"
+      placeholder="Location"
+    />
+    <form action="post"></form>
+    <input
+      type="button"
+      value="insert"
+      class="btn btn-primary"
+      (click)="funInsertcat()"
+    />
+  </div>
+</form>
+<table class="table table-stripped">
+  <th>Sno</th>
+  <th>Theif Name</th>
+  <th>How Many cases</th>
+  <th>Location</th>
+  <th>Operations</th>
+  <tr *ngFor="let item of data; let i = index">
+    <td>{{ i + 1 }}</td>
+    <ng-container *ngIf="tmp1 != item._id; else divelse">
+      <td>{{ item.name }}</td>
+      <td>{{ item.cases }}</td>
+      <td>{{ item.area }}</td>
+      <td>
+        <input
+          type="button"
+          value="Delete"
+          class="btn btn-danger"
+          (click)="funDelete(item._id)"
+        />&nbsp;&nbsp;
+        <input
+          type="button"
+          value="edit"
+          class="btn btn-primary"
+          (click)="funEdit(item)"
+        />
+      </td>
+    </ng-container>
+  </tr>
+</table>
+
+{{ data | json }}
+<ng-template #divelse>
+  <td>
+    <input type="text" [(ngModel)]="tt1" />
+  </td>
+  <td>
+    <input type="number" [(ngModel)]="tt2" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="tt3" />
+  </td>
+  <td>
+    <input
+      type="button"
+      value="cancel"
+      class="btn btn-danger"
+      (click)="funCanel()"
+    />
+    <input
+      type="button"
+      class="btn btn-warning"
+      value="save"
+      (click)="funSave()"
+    />
+  </td>
+</ng-template>
